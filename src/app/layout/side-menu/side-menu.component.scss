@@ -1,0 +1,36 @@
+.side-menu {
+    width: 100px;
+    background-color: #007ACC;
+    height: 100%;
+
+    ul {
+        list-style-type: none;
+        color: #f7f7f7;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            padding: 15px 0;
+
+            &:hover {
+                background-color: #003385;
+                cursor: pointer;
+            }
+
+            &.active {
+                background-color: #003385;
+            }
+
+            i {
+                margin-bottom: 10px;
+            }
+
+            .link-text {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}
