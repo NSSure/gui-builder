@@ -3,10 +3,9 @@
         <button class="button button-success mr-small">New Component</button>
     </div>
     <div class="my-sections">
-        <div class="section" *ngFor="let section of mySections">
+        <div class="section" *ngFor="let section of mySections" [routerLink]="['/editor', section.id]">
             {{section.name}}<br>
             {{section.description}}
-            <button [routerLink]="['/editor', section.id]">Edit Section</button>
         </div>
     </div>
 </div>

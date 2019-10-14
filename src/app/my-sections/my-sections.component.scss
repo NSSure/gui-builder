@@ -1,0 +1,15 @@
+.my-sections {
+    display: flex;
+    flex-direction: row;;
+
+    .section {
+        background-color: #f7f7f7;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        flex-basis: 20%;
+        margin-right: 15px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+    }
+}

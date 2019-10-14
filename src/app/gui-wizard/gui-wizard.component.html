@@ -1,0 +1,19 @@
+<div class="app-component display-flex display-flex-h">
+    <div class="toolbar">
+        <div class="toolbar-header">
+            Toolbar
+        </div>
+        <ul class="toolbar-items">
+            <li #section *ngFor="let mySection of mySections; let i = index;" id="section-{{mySection.id}}"
+                draggable="true">{{mySection.name}}</li>
+        </ul>
+    </div>
+    <div class="design-area">
+        <div class="design-area-header">
+            Design Area
+        </div>
+        <div #dropArea class="drop-area">
+
+        </div>
+    </div>
+</div>

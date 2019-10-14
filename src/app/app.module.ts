@@ -18,6 +18,7 @@ import { GuiWizardComponent } from './gui-wizard/gui-wizard.component';
 import { SectionService } from './services/section.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SectionRibbonComponent } from './gui-wizard/section-ribbon/section-ribbon.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     SideMenuComponent,
     AboutComponent,
     MySectionsComponent,
-    GuiWizardComponent
+    GuiWizardComponent,
+    SectionRibbonComponent
   ],
   imports: [
     BrowserModule,
