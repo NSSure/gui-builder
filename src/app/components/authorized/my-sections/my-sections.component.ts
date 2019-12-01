@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { SectionService } from '../services/section.service';
-import { Router } from '@angular/router';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'my-sections',

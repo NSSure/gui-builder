@@ -1,22 +1,32 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditorComponent } from './editor/editor.component';
-import { AboutComponent } from './about/about.component';
-import { MySectionsComponent } from './my-sections/my-sections.component';
-import { GuiWizardComponent } from './gui-wizard/gui-wizard.component';
-
+import { EditorComponent } from './components/authorized/editor/editor.component';
+import { GuiWizardComponent } from './components/authorized/gui-wizard/gui-wizard.component';
+import { LoginComponent } from './components/public/login/login.component';
+import { MySectionsComponent } from './components/authorized/my-sections/my-sections.component';
+import { AppAuthorized } from './components/authorized/app.authorized';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { AppPublic } from './components/public/app.public';
+import { RegisterComponent } from './components/public/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', redirectTo: 'editor', pathMatch: 'full' },
-  { path: 'editor', component: EditorComponent, data: { title: 'Editor' } },
-  { path: 'editor/:sectionId', component: EditorComponent, data: { title: 'Editor' } },
-  { path: 'about', component: AboutComponent, data: { title: 'About' } },
-  { path: 'my-sections', component: MySectionsComponent, data: { title: 'My Saved Sections' } },
-  { path: 'gui-wizard', component: GuiWizardComponent, data: { title: 'GUI Wizard' } }
+  { path: 'editor', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
+      { path: '', component: EditorComponent, data: { title: 'Editor' } },
+      { path: 'editor/:sectionId', component: EditorComponent, data: { title: 'Editor' } },
+      { path: 'my-sections', component: MySectionsComponent, data: { title: 'My Saved Sections' } },
+      { path: 'gui-wizard', component: GuiWizardComponent, data: { title: 'GUI Wizard' } }
+    ] 
+  },
+  { path: 'login', component: AppPublic, children: [
+    { path: '', component: LoginComponent, data: { animation: 'Register' } },
+    { path: 'register', component: RegisterComponent, data: { animation: 'Login' } }
+  ]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), ],
+  imports: [RouterModule.forRoot(routes), BrowserAnimationsModule],
   exports: [RouterModule],
   declarations: []
 })

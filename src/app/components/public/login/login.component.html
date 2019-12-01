@@ -1,0 +1,26 @@
+<div class="login">
+    <div class="row justify-center login-card">
+        <div class="column-two-fifths">
+            <div class="box is-rounded is-shadowed fill-white">
+                <div class="card-body">
+                    <div class="mb-default">
+                        <label class="text-large">Welcome to GUI Builder</label>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="sectionName" class="form-label">Email</label>
+                        <input type="text" class="input-element" />
+                    </div>
+
+                    <div class="form-section">
+                        <label for="sectionName" class="form-label">Password</label>
+                        <input type="password" class="input-element" />
+                    </div>
+
+                    <button type="button" class="button button-success min-width-100 mb-small" (click)="login()">Login</button>
+                    <button type="button" class="button min-width-100" [routerLink]="['register']" (click)="signup()">Create New Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

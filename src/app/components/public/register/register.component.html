@@ -1,0 +1,27 @@
+<div class="register">
+    <div class="row justify-center register-card">
+        <div class="column-two-fifths">
+            <div class="box is-rounded is-shadowed fill-white">
+                <div class="card-body">
+                    <div class="mb-default">
+                        <label class="text-large">Regiser New Account</label>
+                    </div>
+
+                    <form autocomplete="off" name="RegisterForm">
+                        <div class="form-section">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="text" class="input-element" name="Email" [(ngModel)]="userRegistration.email" required />
+                        </div>
+    
+                        <div class="form-section">
+                            <label for="Password" class="form-label">Password</label>
+                            <input type="password" class="input-element" name="Password" [(ngModel)]="userRegistration.password" required />
+                        </div>
+    
+                        <button type="button" class="button button-success min-width-100 mb-small" (click)="register()">Create New Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

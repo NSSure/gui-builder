@@ -1,0 +1,10 @@
+<div class="simple-tags">
+    <div 
+        class="tag-container {{containerClass}}"
+        #tagContainer
+        (click)="tagContainerFocused()"
+        tabindex="-1">
+        <div *ngFor="let tag of tags" class="tag" contenteditable="false">{{tag.text}}</div>
+        <div #tagEnterArea contenteditable="true" tabindex="-1" class="tag-enter-area" id="tag-enter-area"></div>
+    </div>
+</div>

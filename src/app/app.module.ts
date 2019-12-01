@@ -8,27 +8,37 @@ import { AppComponent } from './app.component';
 import { AceEditorModule } from 'ng2-ace-editor';
 
 // Application components.
-import { EditorComponent } from './editor/editor.component';
-import { SideMenuComponent } from './layout/side-menu/side-menu.component';
-import { AboutComponent } from './about/about.component';
-import { MySectionsComponent } from './my-sections/my-sections.component';
-import { GuiWizardComponent } from './gui-wizard/gui-wizard.component';
 
 // Application services.
 import { SectionService } from './services/section.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { SectionRibbonComponent } from './gui-wizard/section-ribbon/section-ribbon.component';
+import { EditorComponent } from './components/authorized/editor/editor.component';
+import { SideMenuComponent } from './components/authorized/layout/side-menu/side-menu.component';
+import { MySectionsComponent } from './components/authorized/my-sections/my-sections.component';
+import { GuiWizardComponent } from './components/authorized/gui-wizard/gui-wizard.component';
+import { SectionRibbonComponent } from './components/authorized/gui-wizard/section-ribbon/section-ribbon.component';
+import { SimpleTagsComponent } from './components/authorized/tags/simple-tags.component';
+import { LoginComponent } from './components/public/login/login.component';
+import { AppAuthorized } from './components/authorized/app.authorized';
+import { AppPublic } from './components/public/app.public';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { RegisterComponent } from './components/public/register/register.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
+    AppAuthorized,
+    AppPublic,
     AppComponent,
     EditorComponent,
     SideMenuComponent,
-    AboutComponent,
     MySectionsComponent,
     GuiWizardComponent,
-    SectionRibbonComponent
+    SectionRibbonComponent,
+    SimpleTagsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +48,9 @@ import { SectionRibbonComponent } from './gui-wizard/section-ribbon/section-ribb
     AceEditorModule
   ],
   providers: [
-    SectionService
+    SectionService,
+    UserService,
+    AuthenticatedGuard
   ],
   bootstrap: [AppComponent]
 })

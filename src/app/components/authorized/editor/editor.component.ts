@@ -3,9 +3,9 @@ import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, Renderer, Host
 import 'brace';
 import 'brace/mode/html';
 import 'brace/theme/github';
-import { SectionService } from '../services/section.service';
-import Section from '../models/Section';
 import { ActivatedRoute } from '@angular/router';
+import Section from 'src/app/models/Section';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'editor',

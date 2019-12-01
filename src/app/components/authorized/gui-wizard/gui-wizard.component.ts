@@ -1,6 +1,5 @@
 import { Component, QueryList, ElementRef, AfterViewInit, ViewChildren, ViewChild } from '@angular/core';
-import { SectionService } from '../services/section.service';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'gui-wizard',

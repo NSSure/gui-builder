@@ -1,0 +1,29 @@
+.simple-tags {
+    .tag-container {
+        background-color: white;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-direction: row;
+
+        &.focused {
+            outline: 1px solid lightskyblue;
+        }
+
+        .tag {
+            background: #007ACC;
+            color: white;
+            border-radius: 8px;
+            padding: 5px 8px;
+            margin-right: 5px;
+        }
+
+        .tag-enter-area {
+            display: block;
+            align-items: center;
+        }
+    }
+
+    [contenteditable]:focus {
+        outline: 0px solid transparent;
+    }
+}
