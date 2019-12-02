@@ -32,7 +32,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this._activatedRoute.params.subscribe((params) => {
       if (params.sectionId) {
-        this._sectionService.getSectionById(params.sectionId).subscribe((section) => this.section = section);
+        // this._sectionService.getSectionById(params.sectionId).subscribe((section) => this.section = section);
       }
     })
   }
@@ -73,7 +73,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   addNewSection() {
-    console.log(this.section);
-    this._sectionService.addNewSection(this.section);
+    this._sectionService.processNewSection(this.section).subscribe();
   }
 }

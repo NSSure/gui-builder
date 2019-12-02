@@ -3,10 +3,14 @@ import { Injectable } from '@angular/core';
 // Sample data import.
 import { BaseService } from './base.service';
 import Section from '../models/Section';
-import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SectionService extends BaseService {
+  get apiUrl() {
+    return `${this.baseUrl}section/`
+  }
+
   private _mySections: Array<Section>;
 
   get MySections(): Array<Section> {
@@ -21,18 +25,19 @@ export class SectionService extends BaseService {
     return this._mySections;
   }
 
-  addNewSection(section: Section) {
-      section.id = Math.round(Math.random() * 10);
-      this.MySections.push(section);
-      localStorage.setItem("MySections", JSON.stringify(this.MySections));
+  processNewSection(section: Section) {
+    return this.http.post<boolean>(this.apiUrl + 'add', section, this.httpOptions);
   }
 
-  getSectionById(id: number) {
-    let section: Section = this.MySections.find(x => x.id == id);
-    return of(section);
+  processExistingSection(section: Section) {
+    return this.http.post<boolean>(this.apiUrl + 'update', section, this.httpOptions);
   }
 
-  listMySections() {
-      return of(this.MySections);
+  getHtml(sectionId: string) {
+    return this.http.post<string>(this.apiUrl + 'get/html', { value: sectionId }, this.httpOptions);
+  }
+
+  listSections() {
+    return this.http.get<Array<Section>>(this.apiUrl + 'list', this.httpOptions);
   }
 }

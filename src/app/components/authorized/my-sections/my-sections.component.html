@@ -6,6 +6,10 @@
         <div class="section" *ngFor="let section of mySections" [routerLink]="['/editor', section.id]">
             {{section.name}}<br>
             {{section.description}}
+
+            <ul>
+                <li *ngFor="let tag of section.tags">{{tag}}</li>
+            </ul>
         </div>
     </div>
 </div>

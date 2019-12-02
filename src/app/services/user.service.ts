@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 // Sample data import.
 import { BaseService } from './base.service';
 import { BehaviorSubject } from 'rxjs';
+import { Observable, of } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 import UserRegistration from '../models/UserRegistration';
 
 @Injectable()
@@ -55,10 +57,10 @@ export class UserService extends BaseService {
     return this.http.post(this.apiUrl + 'register', userRegistration, this.httpOptions);
   }
 
-//   login(userSignIn: UserSignIn) {
-//     this.http.post<string>(this.apiUrl + 'login', userSignIn, this.httpOptions).subscribe(token => {
-//       this.setIsAuthenticated(true);
-//       localStorage.setItem('userToken', JSON.stringify(token));
-//     });
-//   }
+  login(userSignIn: UserRegistration) {
+    return this.http.post<string>(this.apiUrl + 'login', userSignIn, this.httpOptions).pipe(map(token => {
+      this.setIsAuthenticated(true);
+      localStorage.setItem('userToken', JSON.stringify(token));
+    }));
+  }
 }

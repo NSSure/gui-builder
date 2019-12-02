@@ -11,7 +11,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 
 // Application services.
 import { SectionService } from './services/section.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditorComponent } from './components/authorized/editor/editor.component';
 import { SideMenuComponent } from './components/authorized/layout/side-menu/side-menu.component';
@@ -25,6 +25,8 @@ import { AppPublic } from './components/public/app.public';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { RegisterComponent } from './components/public/register/register.component';
 import { UserService } from './services/user.service';
+import { AuthInterceptor } from './interceptors/auth.interceptors';
+import { PageNotFoundComponent } from './components/layout/not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { UserService } from './services/user.service';
     SectionRibbonComponent,
     SimpleTagsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,12 @@ import { UserService } from './services/user.service';
   providers: [
     SectionService,
     UserService,
-    AuthenticatedGuard
+    AuthenticatedGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

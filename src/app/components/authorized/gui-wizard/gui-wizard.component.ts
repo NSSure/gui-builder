@@ -13,9 +13,8 @@ export class GuiWizardComponent implements AfterViewInit {
   mySections: Array<any> = [];
 
   constructor(private _sectionService: SectionService) {
-    this._sectionService.listMySections().subscribe((mySections) => {
-      this.mySections = mySections;
-      console.log(this.mySections);
+    this._sectionService.listSections().subscribe((sections) => {
+      this.mySections = sections;
     });
   }
 
@@ -47,11 +46,10 @@ export class GuiWizardComponent implements AfterViewInit {
   onDrop(event) {
     const id = event.dataTransfer.getData('text');
 
-    this._sectionService.getSectionById(id).subscribe((section) => {
+    this._sectionService.getHtml(id).subscribe((html) => {
       let draggableElementRef: ElementRef = this.sectionElements.find(x => x.nativeElement.id === id);
 
-      // var sectionHtml = new DOMParser().parseFromString(section.html, "text/xml");
-      let sectionFragment = document.createRange().createContextualFragment(section.html);
+      let sectionFragment = document.createRange().createContextualFragment(html);
 
       let containingElement: HTMLElement = document.createElement('div');
 

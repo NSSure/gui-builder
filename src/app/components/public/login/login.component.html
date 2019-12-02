@@ -9,12 +9,12 @@
 
                     <div class="form-section">
                         <label for="sectionName" class="form-label">Email</label>
-                        <input type="text" class="input-element" />
+                        <input type="text" class="input-element" [(ngModel)]="userCredentials.email" />
                     </div>
 
                     <div class="form-section">
                         <label for="sectionName" class="form-label">Password</label>
-                        <input type="password" class="input-element" />
+                        <input type="password" class="input-element" [(ngModel)]="userCredentials.password" />
                     </div>
 
                     <button type="button" class="button button-success min-width-100 mb-small" (click)="login()">Login</button>
