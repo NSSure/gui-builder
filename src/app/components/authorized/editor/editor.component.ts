@@ -32,7 +32,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this._activatedRoute.params.subscribe((params) => {
       if (params.sectionId) {
-        // this._sectionService.getSectionById(params.sectionId).subscribe((section) => this.section = section);
+        this._sectionService.get(params.sectionId).subscribe((section) => this.section = section);
       }
     })
   }

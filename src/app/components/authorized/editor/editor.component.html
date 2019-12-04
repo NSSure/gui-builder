@@ -1,9 +1,7 @@
 <div class="app-component" #editorComponent (window:resize)="onWindowResize($event)">
   <div class="mb-large" #editorRibbon>
     <div class="mb-large">
-      <button class="button button-success mr-small" (click)="addNewSection()"><i class="fa fa-plus fa-lg"></i> Save New
-        Section</button>
-      <button class="button button-success mr-small"><i class="fa fa-save fa-lg"></i> Update Existing Section</button>
+      <button class="button button-success mr-small" (click)="addNewSection()"><i class="fa fa-save fa-lg"></i> Save Section</button>
     </div>
 
     <div class="form-section">
@@ -11,10 +9,10 @@
       <input type="text" class="input-element" [(ngModel)]="section.name" />
     </div>
 
-    <div class="form-section">
+    <!-- <div class="form-section">
       <label for="sectionName" class="form-label">Component Tags</label>
       <simple-tags containerClass="input-element"></simple-tags>
-    </div>
+    </div> -->
   </div>
 
   <div #editor ace-editor [(text)]="section.html" [mode]="'html'" [theme]="'github'" [options]="options"

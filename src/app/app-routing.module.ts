@@ -12,9 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/layout/not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'editor', pathMatch: 'full' },
-  { path: 'editor', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
-      { path: '', component: EditorComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
+  { path: '', redirectTo: 'builder', pathMatch: 'full' },
+  { path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
+      { path: '', pathMatch: 'full', redirectTo: 'editor' },
+      { path: 'editor', component: EditorComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
       { path: 'editor/:sectionId', component: EditorComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
       { path: 'my-sections', component: MySectionsComponent, canActivate: [AuthenticatedGuard], data: { title: 'My Saved Sections' } },
       { path: 'gui-wizard', component: GuiWizardComponent, canActivate: [AuthenticatedGuard], data: { title: 'GUI Wizard' } }

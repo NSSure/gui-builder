@@ -1,5 +1,6 @@
-import { Component, QueryList, ElementRef, AfterViewInit, ViewChildren, ViewChild } from '@angular/core';
+import { Component, QueryList, ElementRef, AfterViewInit, ViewChildren, ViewChild, ComponentFactoryResolver, ViewContainerRef, ComponentFactory, ComponentRef } from '@angular/core';
 import { SectionService } from 'src/app/services/section.service';
+import { SectionRendererComponent } from './section-renderer/section-renderer.component';
 
 @Component({
   selector: 'gui-wizard',
@@ -9,12 +10,13 @@ import { SectionService } from 'src/app/services/section.service';
 export class GuiWizardComponent implements AfterViewInit {
   @ViewChildren('section') sectionElements: QueryList<ElementRef>;
   @ViewChild('dropArea', { static: true }) dropArea: ElementRef;
+  @ViewChild('sectionContainer', { static: true, read: ViewContainerRef }) sectionContainer;
 
-  mySections: Array<any> = [];
+  sections: Array<any> = [];
 
-  constructor(private _sectionService: SectionService) {
+  constructor(private _sectionService: SectionService, private _resolver: ComponentFactoryResolver) {
     this._sectionService.listSections().subscribe((sections) => {
-      this.mySections = sections;
+      this.sections = sections;
     });
   }
 
@@ -31,38 +33,43 @@ export class GuiWizardComponent implements AfterViewInit {
   }
 
   onDragStart(event) {
-    let sectionId: number = parseInt(event.target.id.split('section-')[1]);
-    console.log(sectionId);
+    let sectionId: string = event.target.id.split('section_')[1];
     event.dataTransfer.setData('text/plain', sectionId);
-    // event.currentTarget.style.backgroundColor = 'yellow';
-    console.log(event);
   }
 
   onDragOver(event) {
     event.preventDefault();
-    console.log(event);
   }
 
   onDrop(event) {
     const id = event.dataTransfer.getData('text');
 
     this._sectionService.getHtml(id).subscribe((html) => {
-      let draggableElementRef: ElementRef = this.sectionElements.find(x => x.nativeElement.id === id);
+      const factory: ComponentFactory<SectionRendererComponent> = this._resolver.resolveComponentFactory(SectionRendererComponent);
+      let componentRef: ComponentRef<SectionRendererComponent> = this.sectionContainer.createComponent(factory);
 
-      let sectionFragment = document.createRange().createContextualFragment(html);
+      componentRef.instance.html = html;
+  
+      // let sectionFragment = document.createRange().createContextualFragment(html);
 
-      let containingElement: HTMLElement = document.createElement('div');
+      // let containingElement: HTMLElement = document.createElement('div');
 
-      containingElement.classList.add('section-container');
-      containingElement.appendChild(sectionFragment);
-      containingElement.style.border = '1px solid yellow';
-      containingElement.style.padding = '15px';
+      // // Style container element that contains the section html.
+      // containingElement.classList.add('section-container');
+      // containingElement.style.border = '1px solid lightskyblue';
+      // containingElement.style.padding = '15px';
 
-      this.dropArea.nativeElement.appendChild(containingElement);
+      // containingElement.onmouseover = (event) => {
+      //   let element: HTMLElement = event.target as HTMLElement;
+      //   element.style.backgroundColor = "#000000";
+      // }
+
+      // // Append the section html fragment to the container.
+      // containingElement.appendChild(sectionFragment);
+
+      // this.dropArea.nativeElement.appendChild(containingElement);
     });
 
     event.dataTransfer.clearData();
-
-    console.log(event);
   }
 }

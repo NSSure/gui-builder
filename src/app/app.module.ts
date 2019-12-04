@@ -27,6 +27,8 @@ import { RegisterComponent } from './components/public/register/register.compone
 import { UserService } from './services/user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptors';
 import { PageNotFoundComponent } from './components/layout/not-found/page-not-found.component';
+import { HoverRibbonComponent } from './components/authorized/gui-wizard/hover-ribbon/hover-ribbon.component';
+import { SectionRendererComponent } from './components/authorized/gui-wizard/section-renderer/section-renderer.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +40,15 @@ import { PageNotFoundComponent } from './components/layout/not-found/page-not-fo
     MySectionsComponent,
     GuiWizardComponent,
     SectionRibbonComponent,
+    SectionRendererComponent,
+    HoverRibbonComponent,
     SimpleTagsComponent,
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent
+  ],
+  entryComponents: [
+    SectionRendererComponent
   ],
   imports: [
     BrowserModule,

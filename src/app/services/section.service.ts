@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import Section from '../models/Section';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class SectionService extends BaseService {
@@ -33,8 +34,13 @@ export class SectionService extends BaseService {
     return this.http.post<boolean>(this.apiUrl + 'update', section, this.httpOptions);
   }
 
+  get(sectionId: string) {
+    return this.http.post<Section>(this.apiUrl + 'get', { value: sectionId }, this.httpOptions);
+  }
+
   getHtml(sectionId: string) {
-    return this.http.post<string>(this.apiUrl + 'get/html', { value: sectionId }, this.httpOptions);
+    const options = { headers: this.httpOptions.headers, responseType: 'text' as 'text' };
+    return this.http.post(this.apiUrl + 'get/html', { value: sectionId }, options);
   }
 
   listSections() {

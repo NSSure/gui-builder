@@ -1,0 +1,4 @@
+<div class="section" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+    <hover-ribbon *ngIf="displaySectionRibbon" (onDestructiveAction)="removeSection()"></hover-ribbon>
+    <div [innerHTML]="html"></div>
+</div>
