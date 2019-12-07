@@ -1,5 +1,6 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ViewRef, ViewChildren } from '@angular/core';
 import Section from 'src/app/models/Section';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'section-renderer',
@@ -7,23 +8,28 @@ import Section from 'src/app/models/Section';
   styleUrls: ['./section-renderer.component.scss']
 })
 export class SectionRendererComponent {
-  @Input() sectionId: string;
-  @Input() html: string;
+  @Input() section: Section;
 
-  @Output() onSectionRemoved: EventEmitter<string> = new EventEmitter<string>();
-
+  @Output() onRibbonEnabled: EventEmitter<Section> = new EventEmitter<Section>();
+  @Output() onSectionRemoved: EventEmitter<Section> = new EventEmitter<Section>();
+  @Output() onSectionTop: EventEmitter<Section> = new EventEmitter<Section>();
+  @Output() onSectionBottom: EventEmitter<Section> = new EventEmitter<Section>();
+  @Output() onSectionUp: EventEmitter<Section> = new EventEmitter<Section>();
+  @Output() onSectionDown: EventEmitter<Section> = new EventEmitter<Section>();
+  
+  isHoveringSection: boolean = false;
   displaySectionRibbon: boolean = false;
 
-  mouseEnter() {
+  enableRibbon() {
     this.displaySectionRibbon = true;
+    this.onRibbonEnabled.emit(this.section);
+  }
+
+  mouseEnter() {
+    this.isHoveringSection = true;
   }
 
   mouseLeave() {
-    this.displaySectionRibbon = false;
-  }
-
-  removeSection() {
-    console.log(this.sectionId);
-    this.onSectionRemoved.emit(this.sectionId);
+    this.isHoveringSection = false;
   }
 }

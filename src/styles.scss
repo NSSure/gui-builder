@@ -1,58 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-@import 'thanatos-css/css/thanatos.css';
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+@import "thanatos-css/css/thanatos.css";
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    background-color: #fff;
-    overflow-x: hidden;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  background-color: #fff;
+  overflow-x: hidden;
 }
 
 app-root {
-    height: 100%;
+  height: 100%;
 }
 
 .app-page {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  .app-body {
     display: flex;
+    flex-direction: column;
+    flex: 1;
 
-    .app-body {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
+    .app-header {
+      background-color: #eee;
+      padding: 15px 30px;
 
-        .app-header {
-            background-color: #eee;
-            padding: 15px 30px;
-    
-            .page-title {
-                font-size: 1.5rem;
-                font-weight: bold;
-            }
-        }
-    
-        .app-content {
-            height: 100%;
-            padding: 30px;
-        }
+      .page-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
     }
+
+    .app-content {
+      height: 100%;
+      padding: 30px;
+      overflow-y: auto;
+    }
+  }
 }
 
 .app-component {
-    height: 100%;
+  height: 100%;
 }
 
 .text-header {
-    font-size: 1.15rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .is-shadowed {
@@ -63,174 +65,194 @@ app-root {
   cursor: pointer;
 }
 
-#sure-toast-root {
-    position: fixed;
-    z-index: 10000;
-    margin: 25px;
-  }
-  
-    #sure-toast-root .sure-toast:last-child {
-      margin-bottom: 0;
-    }
-  
-  .sure-toast {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    background-color: #353535;
-    color: #FEFEFE;
-    margin-bottom: 15px;
-    width: auto;
-    animation: fadein .5s;
-  }
-  
-  #sure-toast-root.bottom {
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  #sure-toast-root.top {
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  #sure-toast-root.top-flush {
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-  }
-  
-  #sure-toast-root.bottom-flush {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-  }
-  
-  #sure-toast-root.top-left {
-    top: 0;
-    left: 0;
-  }
-  
-  #sure-toast-root.top-right {
-    top: 0;
-    right: 0;
-  }
-  
-  #sure-toast-root.bottom-left {
-    bottom: 0;
-    left: 0;
-  }
-  
-  #sure-toast-root.bottom-right {
-    bottom: 0;
-    right: 0;
-  }
-  
-  .sure-toast.success {
-    background-color: #D4EDDA;
-    color: #155724;
-  }
-  
-  .sure-toast.warning {
-    background-color: #FFF3CD;
-    color: #A46404;
-  }
-  
-  .sure-toast.error {
-    background-color: #F8D7DA;
-    color: #881C24;
-  }
-  
-  .sure-toast.info {
-    background-color: #D4EEF9;
-    color: #004085;
-  }
-  
-  .sure-toast .sure-toast-content {
-    padding: 15px;
-  }
-  
-  .sure-toast .sure-toast-header {
+.hovered {
+  outline: 2px solid lightskyblue;
+}
+
+.covered {
+  i {
+    display: block;
     margin-bottom: 10px;
   }
-  
-  .sure-toast .sure-toast-content .sure-toast-header .sure-toast-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .sure-toast .action-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-bottom: 15px;
-  }
-  
-  .sure-toast .toast-action {
-    text-decoration: none;
-    color: #9DC2FA;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.8rem;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-  
-  .sure-toast.success .toast-action {
-    color: #155724;
-  }
-  
-  .sure-toast.warning .toast-action {
-    color: #A46404;
-  }
-  
-  .sure-toast.error .toast-action {
-    color: #881C24;
-  }
-  
-  .sure-toast.info .toast-action {
-    color: #004085;
-  }
-  
-  .sure-toast .progress-bar {
+
+  height: 100px;
+  width: 400px;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  top: 50%;
+  margin-top: -50px;
+  text-align: center;
+}
+
+#sure-toast-root {
+  position: fixed;
+  z-index: 10000;
+  margin: 25px;
+}
+
+#sure-toast-root .sure-toast:last-child {
+  margin-bottom: 0;
+}
+
+.sure-toast {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background-color: #353535;
+  color: #fefefe;
+  margin-bottom: 15px;
+  width: auto;
+  animation: fadein 0.5s;
+}
+
+#sure-toast-root.bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#sure-toast-root.top {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#sure-toast-root.top-flush {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+#sure-toast-root.bottom-flush {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+#sure-toast-root.top-left {
+  top: 0;
+  left: 0;
+}
+
+#sure-toast-root.top-right {
+  top: 0;
+  right: 0;
+}
+
+#sure-toast-root.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+#sure-toast-root.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.sure-toast.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.sure-toast.warning {
+  background-color: #fff3cd;
+  color: #a46404;
+}
+
+.sure-toast.error {
+  background-color: #f8d7da;
+  color: #881c24;
+}
+
+.sure-toast.info {
+  background-color: #d4eef9;
+  color: #004085;
+}
+
+.sure-toast .sure-toast-content {
+  padding: 15px;
+}
+
+.sure-toast .sure-toast-header {
+  margin-bottom: 10px;
+}
+
+.sure-toast .sure-toast-content .sure-toast-header .sure-toast-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.sure-toast .action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
+.sure-toast .toast-action {
+  text-decoration: none;
+  color: #9dc2fa;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.sure-toast.success .toast-action {
+  color: #155724;
+}
+
+.sure-toast.warning .toast-action {
+  color: #a46404;
+}
+
+.sure-toast.error .toast-action {
+  color: #881c24;
+}
+
+.sure-toast.info .toast-action {
+  color: #004085;
+}
+
+.sure-toast .progress-bar {
+  width: 100%;
+  height: 15px;
+  background-color: #525252;
+}
+
+.sure-toast.success .progress-bar {
+  background-color: #c2d8c7;
+}
+
+.sure-toast.warning .progress-bar {
+  background-color: #e8dcb6;
+}
+
+.sure-toast.error .progress-bar {
+  background-color: #debdc0;
+}
+
+.sure-toast.info .progress-bar {
+  background-color: #c0dae5;
+}
+
+@keyframes collapse {
+  from {
     width: 100%;
-    height: 15px;
-    background-color: #525252;
   }
-  
-  .sure-toast.success .progress-bar {
-    background-color: #C2D8C7;
+
+  to {
+    width: 0;
   }
-  
-  .sure-toast.warning .progress-bar {
-    background-color: #E8DCB6;
-  }
-  
-  .sure-toast.error .progress-bar {
-    background-color: #DEBDC0;
-  }
-  
-  .sure-toast.info .progress-bar {
-    background-color: #C0DAE5;
-  }
-  
-  @keyframes collapse {
-    from {
-      width: 100%;
-    }
-  
-    to {
-      width: 0;
-    }
-  }
+}

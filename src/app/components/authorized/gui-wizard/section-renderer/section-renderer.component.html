@@ -1,4 +1,30 @@
-<div class="section" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
-    <hover-ribbon *ngIf="displaySectionRibbon" (onDestructiveAction)="removeSection()"></hover-ribbon>
-    <div [innerHTML]="html"></div>
+<div class="section-renderer" *ngIf="section" [ngClass]="{'hovered': isHoveringSection || displaySectionRibbon}"
+    (click)="enableRibbon()" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+    <div *ngIf="displaySectionRibbon"
+        class="section-hover-ribbon box is-rounded display-flex flex-direction-x justify-between fill-dark">
+        <div>
+            <a class="text-danger" (click)="onSectionRemoved.emit(section)" title-="Delete section from design">
+                <i class="fa fa-close fa-lg"></i>
+            </a>
+        </div>
+        <div class="display-flex">
+            <div class="action-group extra">
+                <a class="text-light" (click)="onSectionTop.emit(section)" title="Move to top">
+                    <i class="fa fa-step-forward fa-lg fa-rotate-270"></i>
+                </a>
+                <a class="text-light" (click)="onSectionBottom.emit(section)" title="Move to bottom">
+                    <i class="fa fa-step-forward fa-lg fa-rotate-90"></i>
+                </a>
+            </div>
+            <div class="action-group">
+                <a class="text-light" (click)="onSectionUp.emit(section)" title="Move section up">
+                    <i class="fa fa-arrow-up fa-lg"></i>
+                </a>
+                <a class="text-light" (click)="onSectionDown.emit(section)" title="Move section down">
+                    <i class="fa fa-arrow-down fa-lg "></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="section-renderer-content" [innerHTML]="section.html"></div>
 </div>

@@ -18,7 +18,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   @ViewChild('editor', { static: true }) editor: ElementRef;
 
   text: string = "";
-  options: any = { maxLines: 1000, printMargin: false };
+  options: any = { maxLines: 10000, printMargin: false };
   loaded: boolean = false;
 
   calculatedHeight: number = 0;

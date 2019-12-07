@@ -9,11 +9,18 @@
         </ul>
     </div>
     <div class="design-area">
-        <div class="design-area-header">
-            Design Area
+        <div class="design-area-header display-flex justify-between">
+            <span>Design Area</span>
+            <a class="cursor-pointer text-link" title="View code">
+                <i class="fa fa-code fa-lg"></i>
+            </a>
         </div>
         <div #dropArea class="drop-area">
-            <template #sectionContainer></template>
+            <div #designItems></div>
+            <div class="covered" *ngIf="!hasSections">
+                <i class="fa fa-picture-o fa-5x text-dark"></i>
+                <span>There are no sections in the current design. Try dragging some sections in from the left to get started.</span>
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
-import { Component, QueryList, ElementRef, AfterViewInit, ViewChildren, ViewChild, ComponentFactoryResolver, ViewContainerRef, ComponentFactory, ComponentRef } from '@angular/core';
+import { Component, QueryList, ElementRef, AfterViewInit, ViewChildren, ViewChild, ComponentFactoryResolver, ViewContainerRef, ComponentFactory, ComponentRef, ViewRef, ContentChildren } from '@angular/core';
 import { SectionService } from 'src/app/services/section.service';
 import { SectionRendererComponent } from './section-renderer/section-renderer.component';
+import ToastManager from 'src/app/common/toast';
+import Section from 'src/app/models/Section';
 
 @Component({
   selector: 'gui-wizard',
@@ -10,7 +12,16 @@ import { SectionRendererComponent } from './section-renderer/section-renderer.co
 export class GuiWizardComponent implements AfterViewInit {
   @ViewChildren('section') sectionElements: QueryList<ElementRef>;
   @ViewChild('dropArea', { static: true }) dropArea: ElementRef;
-  @ViewChild('sectionContainer', { static: true, read: ViewContainerRef }) sectionContainer;
+
+  @ViewChild('designItems', { static: true, read: ViewContainerRef }) designItems: ViewContainerRef;
+
+  sectionRenderers: Array<ComponentRef<SectionRendererComponent>> = new Array();
+
+  hasSections: boolean = false;
+
+  toastManager: ToastManager = new ToastManager({
+    enableManualDismiss: true
+  });
 
   sections: Array<any> = [];
 
@@ -18,6 +29,7 @@ export class GuiWizardComponent implements AfterViewInit {
     this._sectionService.listSections().subscribe((sections) => {
       this.sections = sections;
     });
+    console.log(this.designItems);
   }
 
   ngAfterViewInit() {
@@ -44,30 +56,79 @@ export class GuiWizardComponent implements AfterViewInit {
   onDrop(event) {
     const id = event.dataTransfer.getData('text');
 
+    this.hasSections = true;
+
     this._sectionService.getHtml(id).subscribe((html) => {
       const factory: ComponentFactory<SectionRendererComponent> = this._resolver.resolveComponentFactory(SectionRendererComponent);
-      let componentRef: ComponentRef<SectionRendererComponent> = this.sectionContainer.createComponent(factory);
+      let componentRef: ComponentRef<SectionRendererComponent> = this.designItems.createComponent(factory);
 
-      componentRef.instance.html = html;
-  
-      // let sectionFragment = document.createRange().createContextualFragment(html);
+      this.sectionRenderers.push(componentRef);
 
-      // let containingElement: HTMLElement = document.createElement('div');
+      let section = this.sections.find(x => x.id === id);
 
-      // // Style container element that contains the section html.
-      // containingElement.classList.add('section-container');
-      // containingElement.style.border = '1px solid lightskyblue';
-      // containingElement.style.padding = '15px';
+      section.html = html;
+      componentRef.instance.section = section;
 
-      // containingElement.onmouseover = (event) => {
-      //   let element: HTMLElement = event.target as HTMLElement;
-      //   element.style.backgroundColor = "#000000";
-      // }
+      componentRef.instance.onRibbonEnabled.subscribe((section: Section) => {
+        this.sectionRenderers.forEach((sectionRenderer) => {
+          if (componentRef.hostView !== sectionRenderer.hostView) {
+            sectionRenderer.instance.displaySectionRibbon = false;
+          }
+        });
+      });
 
-      // // Append the section html fragment to the container.
-      // containingElement.appendChild(sectionFragment);
+      componentRef.instance.onSectionRemoved.subscribe((section: Section) => {
+        componentRef.destroy();
+        this.toastManager.showSuccess(`${section.name} removed from template design successfully`);
+      });
 
-      // this.dropArea.nativeElement.appendChild(containingElement);
+      componentRef.instance.onSectionTop.subscribe((section: Section) => {
+        let index = this.designItems.indexOf(componentRef.hostView);
+
+        if (index !== 0) {
+          this.designItems.move(componentRef.hostView, 0);
+        }
+        else {
+          this.toastManager.showWarning('Section is already at the top of the design');
+        }
+      });
+
+      componentRef.instance.onSectionBottom.subscribe((section: Section) => {
+        let index = this.designItems.indexOf(componentRef.hostView);
+
+        if (index !== (this.designItems.length - 1)) {
+          this.designItems.move(componentRef.hostView, this.designItems.length - 1);
+        }
+        else {
+          this.toastManager.showWarning('Section is already at the top of the design');
+        }
+      });
+
+      componentRef.instance.onSectionUp.subscribe((section: Section) => {
+        let index = this.designItems.indexOf(componentRef.hostView);
+        let newIndex = index - 1;
+
+        if (newIndex >= 0) {
+          this.designItems.move(componentRef.hostView, newIndex);
+        }
+        else {
+          this.toastManager.showWarning('Section is already at the top of the design');
+        }
+      });
+
+      componentRef.instance.onSectionDown.subscribe((section: Section) => {
+        let index = this.designItems.indexOf(componentRef.hostView);
+        let newIndex = index + 1;
+
+        console.log(newIndex <= this.designItems.length);
+
+        if (newIndex <= this.designItems.length - 1) {
+          this.designItems.move(componentRef.hostView, newIndex);
+        }
+        else {
+          this.toastManager.showWarning('Section is already at the bottom of the design');
+        }
+      });
     });
 
     event.dataTransfer.clearData();
