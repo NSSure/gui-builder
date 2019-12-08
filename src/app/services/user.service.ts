@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 // Sample data import.
 import { BaseService } from './base.service';
 import { BehaviorSubject } from 'rxjs';
-import { Observable, of } from "rxjs";
-import { map, catchError } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import UserRegistration from '../models/UserRegistration';
 
 @Injectable()
@@ -17,8 +16,12 @@ export class UserService extends BaseService {
     this._isAuthenticatedSource.next(isAuthenticated);
   }
 
+  get userToken() {
+    return JSON.parse(localStorage.getItem('userToken'));
+  }
+
   get token() {
-    let userToken = JSON.parse(localStorage.getItem('userToken'));
+    let userToken = this.userToken;
 
     if (userToken) {
       // [0] = Header, [1] = Payload, [2] = Signature

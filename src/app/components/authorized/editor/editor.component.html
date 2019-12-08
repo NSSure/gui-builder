@@ -1,23 +1,9 @@
-<div class="app-component" #editorComponent (window:resize)="onWindowResize($event)">
-  <div class="mb-large" #editorRibbon>
-    <div class="mb-large">
-      <button class="button button-success mr-small" (click)="addNewSection()"><i class="fa fa-save fa-lg"></i> Save
-        Section</button>
+<div class="editor" style="height: 100%;" #editorComponent>
+    <div 
+    #editor
+    id="editor"
+    (window:resize)="onWindowResize($event)" 
+    ace-editor [(text)]="content" [mode]="'html'"
+        [theme]="'github'" [options]="options" [autoUpdateContent]="true">
     </div>
-
-    <div class="form-section">
-      <label for="sectionName" class="form-label">Section Name</label>
-      <input type="text" class="input-element" [(ngModel)]="section.name" />
-    </div>
-  </div>
-
-  <div 
-    #editor 
-    ace-editor 
-    [(text)]="section.html" 
-    [mode]="'html'" 
-    [theme]="'github'" 
-    [options]="options"
-    [autoUpdateContent]="true">
-  </div>
 </div>

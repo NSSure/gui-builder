@@ -1,25 +1,52 @@
-<div class="app-component display-flex display-flex-h">
-    <div class="toolbar">
-        <div class="toolbar-header">
-            Toolbar
-        </div>
-        <ul class="toolbar-items" #section>
-            <li *ngFor="let section of sections; let i = index;" id="section_{{section.id}}" draggable="true">
-                {{section.name}}</li>
-        </ul>
+<div class="app-component display-flex flex-direction-y">
+    <div class="box box-ribbon mb-large is-shadowed">
+        <button type="button" class="button button-danger">
+            <i class="fa fa-close"></i> Clear
+        </button>
+        <dropdown title="Css Libraries">
+            <ul>
+                <li><a href="#">Bootstrap 3</a></li>
+                <li><a href="#">Bootstrap 4</a></li>
+                <li><a href="#">Bulma</a></li>
+                <li><a href="#">Materialize</a></li>
+            </ul>
+        </dropdown>
+        <dropdown title="Components">
+            <ul>
+                <li><a href="#">Test</a></li>
+                <li><a href="#">Test</a></li>
+                <li><a href="#">Test</a></li>
+                <li><a href="#">Test</a></li>
+                <li><a href="#">Test</a></li>
+            </ul>
+        </dropdown>
     </div>
-    <div class="design-area">
-        <div class="design-area-header display-flex justify-between">
-            <span>Design Area</span>
-            <a class="cursor-pointer text-link" title="View code">
-                <i class="fa fa-code fa-lg"></i>
-            </a>
+    <div class="display-flex flex-direction-x flex-full" style="height: 0px;">
+        <div class="toolbar">
+            <div class="toolbar-header">
+                Toolbar
+            </div>
+            <ul class="toolbar-items" #section>
+                <li *ngFor="let section of sections; let i = index;" id="section_{{section.id}}" draggable="true">{{section.name}}</li>
+            </ul>
         </div>
-        <div #dropArea class="drop-area">
-            <div #designItems></div>
-            <div class="covered" *ngIf="!hasSections">
-                <i class="fa fa-picture-o fa-5x text-dark"></i>
-                <span>There are no sections in the current design. Try dragging some sections in from the left to get started.</span>
+        <div class="design-area">
+            <div class="design-area-header display-flex justify-between">
+                <span>Design Area</span>
+                <a class="cursor-pointer text-link" title="View code" (click)="toggleEditHtml()">
+                    <i class="fa fa-code fa-lg"></i>
+                </a>
+            </div>
+            <div #dropArea class="drop-area" [hidden]="isEditHtml">
+                <div #designItems></div>
+                <div class="covered" *ngIf="!hasSections">
+                    <i class="fa fa-picture-o fa-5x text-dark"></i>
+                    <span>There are no sections in the current design. Try dragging some sections in from the left to
+                        get started.</span>
+                </div>
+            </div>
+            <div class="code-editor" *ngIf="isEditHtml">
+                <editor [content]="designHtml"></editor>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 .my-sections {
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
+    flex-wrap: wrap;
 
     .section {
         background-color: #f7f7f7;

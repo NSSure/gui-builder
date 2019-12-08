@@ -1,0 +1,7 @@
+<div class="dropdown">
+    <div #button><ng-content select="[button]"></ng-content></div>
+    <button *ngIf="button.children.length == 0" class="button" [class]="buttonClass">{{title}} <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-content is-shadowed is-rounded">
+        <ng-content select="[content]"></ng-content>
+    </div>
+</div>

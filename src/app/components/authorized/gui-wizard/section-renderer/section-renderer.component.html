@@ -2,9 +2,15 @@
     (click)="enableRibbon()" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
     <div *ngIf="displaySectionRibbon"
         class="section-hover-ribbon box is-rounded display-flex flex-direction-x justify-between fill-dark">
-        <div>
+        <div class="action-group">
             <a class="text-danger" (click)="onSectionRemoved.emit(section)" title-="Delete section from design">
                 <i class="fa fa-close fa-lg"></i>
+            </a>
+            <a class="text-light" (click)="onEditContent.emit(section)" title-="Delete section from design">
+                <i class="fa fa-pencil fa-lg"></i>
+            </a>
+            <a class="text-light" (click)="onEditHtml.emit(section)" title-="Delete section from design">
+                <i class="fa fa-code fa-lg"></i>
             </a>
         </div>
         <div class="display-flex">

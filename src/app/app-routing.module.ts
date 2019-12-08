@@ -3,21 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditorComponent } from './components/authorized/editor/editor.component';
 import { GuiWizardComponent } from './components/authorized/gui-wizard/gui-wizard.component';
 import { LoginComponent } from './components/public/login/login.component';
-import { MySectionsComponent } from './components/authorized/my-sections/my-sections.component';
 import { AppAuthorized } from './components/authorized/app.authorized';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { AppPublic } from './components/public/app.public';
 import { RegisterComponent } from './components/public/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/layout/not-found/page-not-found.component';
+import { SectionListComponent } from './components/authorized/section/list/section-list.component';
+import { SectionManageComponent } from './components/authorized/section/manage/section-manage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'builder', pathMatch: 'full' },
   { path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
       { path: '', pathMatch: 'full', redirectTo: 'editor' },
-      { path: 'editor', component: EditorComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
-      { path: 'editor/:sectionId', component: EditorComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
-      { path: 'my-sections', component: MySectionsComponent, canActivate: [AuthenticatedGuard], data: { title: 'My Saved Sections' } },
+      { path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
+      { path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
+      { path: 'sections', component: SectionListComponent, canActivate: [AuthenticatedGuard], data: { title: 'My Saved Sections' } },
       { path: 'gui-wizard', component: GuiWizardComponent, canActivate: [AuthenticatedGuard], data: { title: 'GUI Wizard' } }
     ] 
   },

@@ -27,6 +27,7 @@ export class SectionService extends BaseService {
   }
 
   processNewSection(section: Section) {
+    console.log(this.httpOptions);
     return this.http.post<boolean>(this.apiUrl + 'add', section, this.httpOptions);
   }
 

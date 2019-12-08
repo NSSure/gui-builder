@@ -1,0 +1,35 @@
+<div class="app-component display-flex flex-direction-y">
+  <div class="box mb-large is-rounded is-shadowed fill-white">
+    <button class="button button-success mr-small" (click)="addNewSection()"><i class="fa fa-save fa-lg"></i> Save
+      Section</button>
+  </div>
+  <div class="box fill-white is-rounded is-shadowed display-flex flex-direction-y flex-full">
+    <div class="mb-large">
+      <div class="row">
+        <div class="column" style="padding-right: 15px">
+          <div class="form-section">
+            <label for="sectionName" class="form-label">Section Name</label>
+            <input type="text" class="input-element" [(ngModel)]="section.name" />
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-section">
+            <label for="sectionName" class="form-label">Framework</label>
+            <select class="input-element">
+              <option value="">Bootstrap 3</option>
+              <option value="">Bootstrap 4</option>
+              <option value="">Bulma</option>
+              <option value="">Materialize</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="box" style="padding-left: 5px; padding-right: 5px; padding-top: 0; padding-bottom: 0;">
+        <tag-input [(ngModel)]="tags" [editable]="true" theme="minimal"></tag-input>
+      </div>
+    </div>
+
+    <editor [content]="section.html" (onContentChanged)="onContentChanged($event)"></editor>
+  </div>
+</div>

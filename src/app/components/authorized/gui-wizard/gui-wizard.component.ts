@@ -3,6 +3,8 @@ import { SectionService } from 'src/app/services/section.service';
 import { SectionRendererComponent } from './section-renderer/section-renderer.component';
 import ToastManager from 'src/app/common/toast';
 import Section from 'src/app/models/Section';
+import { deepEqual } from 'fast-equals';
+import copy from 'src/app/common/copy';
 
 @Component({
   selector: 'gui-wizard',
@@ -18,6 +20,8 @@ export class GuiWizardComponent implements AfterViewInit {
   sectionRenderers: Array<ComponentRef<SectionRendererComponent>> = new Array();
 
   hasSections: boolean = false;
+  isEditHtml: boolean = false;
+  designHtml: string = '';
 
   toastManager: ToastManager = new ToastManager({
     enableManualDismiss: true
@@ -29,7 +33,6 @@ export class GuiWizardComponent implements AfterViewInit {
     this._sectionService.listSections().subscribe((sections) => {
       this.sections = sections;
     });
-    console.log(this.designItems);
   }
 
   ngAfterViewInit() {
@@ -44,6 +47,25 @@ export class GuiWizardComponent implements AfterViewInit {
     this.dropArea.nativeElement.ondrop = (event) => this.onDrop(event);
   }
 
+  toggleEditHtml() {
+    this.isEditHtml = !this.isEditHtml;
+
+    if (this.isEditHtml) {
+      this.designHtml = '';
+
+      this.sectionRenderers.forEach((sectionRenderer) => {
+        this.designHtml += sectionRenderer.instance.section.html;
+      });
+    }
+
+    copy(this.designHtml, 'Design HTML copied to clipboard');
+  }
+
+  shiftIndex(from, to) {
+    let splice = this.sectionRenderers.splice(from, 1)[0];
+    this.sectionRenderers.splice(to, 0, splice);
+  }
+
   onDragStart(event) {
     let sectionId: string = event.target.id.split('section_')[1];
     event.dataTransfer.setData('text/plain', sectionId);
@@ -54,6 +76,10 @@ export class GuiWizardComponent implements AfterViewInit {
   }
 
   onDrop(event) {
+    if (this.isEditHtml) {
+      return;
+    }
+
     const id = event.dataTransfer.getData('text');
 
     this.hasSections = true;
@@ -87,6 +113,7 @@ export class GuiWizardComponent implements AfterViewInit {
 
         if (index !== 0) {
           this.designItems.move(componentRef.hostView, 0);
+          this.shiftIndex(index, 0)
         }
         else {
           this.toastManager.showWarning('Section is already at the top of the design');
@@ -98,6 +125,7 @@ export class GuiWizardComponent implements AfterViewInit {
 
         if (index !== (this.designItems.length - 1)) {
           this.designItems.move(componentRef.hostView, this.designItems.length - 1);
+          this.shiftIndex(index, this.designItems.length - 1);
         }
         else {
           this.toastManager.showWarning('Section is already at the top of the design');
@@ -110,6 +138,7 @@ export class GuiWizardComponent implements AfterViewInit {
 
         if (newIndex >= 0) {
           this.designItems.move(componentRef.hostView, newIndex);
+          this.shiftIndex(index, newIndex);
         }
         else {
           this.toastManager.showWarning('Section is already at the top of the design');
@@ -124,6 +153,7 @@ export class GuiWizardComponent implements AfterViewInit {
 
         if (newIndex <= this.designItems.length - 1) {
           this.designItems.move(componentRef.hostView, newIndex);
+          this.shiftIndex(index, newIndex);
         }
         else {
           this.toastManager.showWarning('Section is already at the bottom of the design');

@@ -3,6 +3,7 @@ import { Router, RoutesRecognized, NavigationEnd, ActivatedRoute, ResolveStart }
 
 import { filter, map, mergeMap } from "rxjs/operators";
 import { pipe } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-authorized',
@@ -12,9 +13,14 @@ import { pipe } from 'rxjs';
 export class AppAuthorized implements OnInit {
   routerSub: any;
   data: any = {};
+  email: string;
 
-  constructor(
-    private router: Router) { 
+  constructor(private router: Router, private _userService: UserService) { 
+    this._userService.isAuthenticated.subscribe((isAuthenticated) => {
+      if (isAuthenticated) {
+        this.email = this._userService.userToken.email;
+      }
+    });
   }
 
   ngOnInit() {

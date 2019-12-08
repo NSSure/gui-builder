@@ -1,0 +1,25 @@
+<div class="app-component">
+    <div class="box fill-white is-rounded is-shadowed mb-large" #editorRibbon>
+        <button class="button button-dark mr-small" [routerLink]="['/builder/section']">New Component</button>
+    </div>
+    <div class="my-sections">
+        <table class="table custom-table is-shadowed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let section of sections" [routerLink]="['/builder/section', section.id]">
+                    <td>{{section.name}}</td>
+                    <td>
+                        <tag-input *ngIf="section.tags.length != 0" [(ngModel)]="section.tags" [modelAsStrings]="true"
+                            [removable]="false" [hideForm]="true" theme="minimal"></tag-input>
+                        <span class="help-text" *ngIf="section.tags == 0">No tags</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

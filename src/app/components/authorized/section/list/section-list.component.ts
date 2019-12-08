@@ -3,11 +3,11 @@ import { SectionService } from 'src/app/services/section.service';
 import Section from 'src/app/models/Section';
 
 @Component({
-  selector: 'my-sections',
-  templateUrl: './my-sections.component.html',
-  styleUrls: ['./my-sections.component.scss']
+  selector: 'section-list',
+  templateUrl: './section-list.component.html',
+  styleUrls: ['./section-list.component.scss']
 })
-export class MySectionsComponent {
+export class SectionListComponent {
   sections: Array<Section> = [];
 
   constructor(private _sectionService: SectionService) {

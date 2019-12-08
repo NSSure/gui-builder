@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 // 3rd party modules.
 import { AceEditorModule } from 'ng2-ace-editor';
+import { TagInputModule } from 'ngx-chips';
 
 // Application components.
 
@@ -13,9 +14,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { SectionService } from './services/section.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { EditorComponent } from './components/authorized/editor/editor.component';
 import { SideMenuComponent } from './components/authorized/layout/side-menu/side-menu.component';
-import { MySectionsComponent } from './components/authorized/my-sections/my-sections.component';
 import { GuiWizardComponent } from './components/authorized/gui-wizard/gui-wizard.component';
 import { SectionRibbonComponent } from './components/authorized/gui-wizard/section-ribbon/section-ribbon.component';
 import { SimpleTagsComponent } from './components/authorized/tags/simple-tags.component';
@@ -28,19 +27,25 @@ import { UserService } from './services/user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptors';
 import { PageNotFoundComponent } from './components/layout/not-found/page-not-found.component';
 import { SectionRendererComponent } from './components/authorized/gui-wizard/section-renderer/section-renderer.component';
+import { SectionListComponent } from './components/authorized/section/list/section-list.component';
+import { SectionManageComponent } from './components/authorized/section/manage/section-manage.component';
+import { DropdownComponent } from './components/authorized/dropdown/dropdown.component';
+import { EditorComponent } from './components/authorized/editor/editor.component';
 
 @NgModule({
   declarations: [
     AppAuthorized,
     AppPublic,
     AppComponent,
-    EditorComponent,
     SideMenuComponent,
-    MySectionsComponent,
+    EditorComponent,
+    SectionManageComponent,
+    SectionListComponent,
     GuiWizardComponent,
     SectionRibbonComponent,
     SectionRendererComponent,
     SimpleTagsComponent,
+    DropdownComponent,
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent
@@ -53,7 +58,8 @@ import { SectionRendererComponent } from './components/authorized/gui-wizard/sec
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    AceEditorModule
+    AceEditorModule,
+    TagInputModule
   ],
   providers: [
     SectionService,

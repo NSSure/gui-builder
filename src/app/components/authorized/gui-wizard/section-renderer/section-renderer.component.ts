@@ -11,7 +11,12 @@ export class SectionRendererComponent {
   @Input() section: Section;
 
   @Output() onRibbonEnabled: EventEmitter<Section> = new EventEmitter<Section>();
+
   @Output() onSectionRemoved: EventEmitter<Section> = new EventEmitter<Section>();
+
+  @Output() onEditContent: EventEmitter<Section> = new EventEmitter<Section>();
+  @Output() onEditHtml: EventEmitter<Section> = new EventEmitter<Section>();
+
   @Output() onSectionTop: EventEmitter<Section> = new EventEmitter<Section>();
   @Output() onSectionBottom: EventEmitter<Section> = new EventEmitter<Section>();
   @Output() onSectionUp: EventEmitter<Section> = new EventEmitter<Section>();
