@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
+import { routeAnimations } from 'src/app/animations/animations';
 import { RouterOutlet } from '@angular/router';
-import { slideInAnimation } from 'src/app/animations/animations';
 
 @Component({
   selector: 'app-public',
   templateUrl: './app.public.html',
   styleUrls: ['./app.public.scss'],
-  animations: [
-    slideInAnimation
-  ]
+  animations: [routeAnimations]
 })
 export class AppPublic {
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
+
 }

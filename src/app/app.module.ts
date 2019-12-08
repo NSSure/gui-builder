@@ -31,6 +31,7 @@ import { SectionListComponent } from './components/authorized/section/list/secti
 import { SectionManageComponent } from './components/authorized/section/manage/section-manage.component';
 import { DropdownComponent } from './components/authorized/dropdown/dropdown.component';
 import { EditorComponent } from './components/authorized/editor/editor.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { EditorComponent } from './components/authorized/editor/editor.component
     HttpClientModule,
     FormsModule,
     AceEditorModule,
-    TagInputModule
+    TagInputModule,
+    BrowserAnimationsModule
   ],
   providers: [
     SectionService,

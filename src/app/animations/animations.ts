@@ -1,29 +1,25 @@
 import { trigger, transition, style, query, group, animateChild, animate } from '@angular/animations';
 
-export const slideInAnimation =
+export const routeAnimations =
   trigger('routeAnimations', [
-    transition('Login <=> Register', [
-      style({ position: 'relative' }),
+    transition('* <=> *', [
       query(':enter, :leave', [
         style({
           position: 'absolute',
           top: 0,
+          right: 0,
+          opacity: 0,
           left: 0,
-          width: '100%'
+          bottom: 0,
+          padding: '30px'
         })
       ]),
       query(':enter', [
-        style({ left: '-100%'})
+        style({ opacity: '0'})
       ]),
       query(':leave', animateChild()),
-      group([
-        query(':leave', [
-          animate('300ms ease-out', style({ left: '100%'}))
-        ]),
-        query(':enter', [
-          animate('300ms ease-out', style({ left: '0%'}))
-        ])
-      ]),
-      query(':enter', animateChild()),
+      query(':enter', [
+        animate('500ms ease-out', style({ opacity: '1'}))
+      ])
     ])
   ]);

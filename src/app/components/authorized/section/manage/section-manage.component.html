@@ -1,7 +1,8 @@
 <div class="app-component display-flex flex-direction-y">
   <div class="box mb-large is-rounded is-shadowed fill-white">
-    <button class="button button-success mr-small" (click)="addNewSection()"><i class="fa fa-save fa-lg"></i> Save
-      Section</button>
+    <button class="button button-brand mr-small" (click)="addNewSection()"><i class="fa fa-save fa-lg"></i> Save
+      Section
+    </button>
   </div>
   <div class="box fill-white is-rounded is-shadowed display-flex flex-direction-y flex-full">
     <div class="mb-large">
@@ -25,8 +26,8 @@
         </div>
       </div>
 
-      <div class="box" style="padding-left: 5px; padding-right: 5px; padding-top: 0; padding-bottom: 0;">
-        <tag-input [(ngModel)]="tags" [editable]="true" theme="minimal"></tag-input>
+      <div class="box fill-white" style="padding-left: 5px; padding-right: 5px; padding-top: 0; padding-bottom: 0;">
+        <tag-input [(ngModel)]="section.tags" [editable]="true" [modelAsStrings]="true" theme="minimal"></tag-input>
       </div>
     </div>
 

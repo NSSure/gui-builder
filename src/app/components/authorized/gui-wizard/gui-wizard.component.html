@@ -1,19 +1,19 @@
 <div class="app-component display-flex flex-direction-y">
-    <div class="box box-ribbon mb-large is-shadowed">
-        <button type="button" class="button button-danger">
+    <div class="box gui-ribbon fill-white mb-large is-shadowed">
+        <button type="button" class="button button-danger ribbon-button">
             <i class="fa fa-close"></i> Clear
         </button>
-        <dropdown title="Css Libraries">
-            <ul>
+        <dropdown title="Css Libraries" buttonClass="button ribbon-button">
+            <ul content>
                 <li><a href="#">Bootstrap 3</a></li>
                 <li><a href="#">Bootstrap 4</a></li>
                 <li><a href="#">Bulma</a></li>
                 <li><a href="#">Materialize</a></li>
             </ul>
         </dropdown>
-        <dropdown title="Components">
-            <ul>
-                <li><a href="#">Test</a></li>
+        <dropdown title="Components" buttonClass="button ribbon-button">
+            <ul content>
+                <li><a href="#">Badge</a></li>
                 <li><a href="#">Test</a></li>
                 <li><a href="#">Test</a></li>
                 <li><a href="#">Test</a></li>
@@ -27,7 +27,8 @@
                 Toolbar
             </div>
             <ul class="toolbar-items" #section>
-                <li *ngFor="let section of sections; let i = index;" id="section_{{section.id}}" draggable="true">{{section.name}}</li>
+                <li *ngFor="let section of sections; let i = index;" id="section_{{section.id}}" draggable="true">
+                    {{section.name}}</li>
             </ul>
         </div>
         <div class="design-area">

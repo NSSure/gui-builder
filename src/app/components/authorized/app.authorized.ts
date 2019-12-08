@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RoutesRecognized, NavigationEnd, ActivatedRoute, ResolveStart } from '@angular/router';
-
-import { filter, map, mergeMap } from "rxjs/operators";
-import { pipe } from 'rxjs';
+import { Router, RoutesRecognized, NavigationEnd, ActivatedRoute, ResolveStart, RouterOutlet } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { routeAnimations } from 'src/app/animations/animations';
 
 @Component({
   selector: 'app-authorized',
   templateUrl: './app.authorized.html',
-  styleUrls: ['./app.authorized.scss']
+  styleUrls: ['./app.authorized.scss'],
+  animations: [
+    routeAnimations
+  ]
 })
 export class AppAuthorized implements OnInit {
   routerSub: any;

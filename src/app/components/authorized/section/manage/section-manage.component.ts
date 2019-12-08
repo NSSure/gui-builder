@@ -1,9 +1,9 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import Section from 'src/app/models/Section';
 import { SectionService } from 'src/app/services/section.service';
-import { ThrowStmt } from '@angular/compiler';
+import ToastManager from 'src/app/common/toast';
 
 @Component({
   selector: 'section-manage',
@@ -11,15 +11,13 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./section-manage.component.scss']
 })
 export class SectionManageComponent implements OnInit {
-  text: string = "";
+  toastManager: ToastManager = new ToastManager({
+    interval: 2000,
+    enableManualDismiss: true
+  });
+
   options: any = { maxLines: Infinity, printMargin: false };
-  loaded: boolean = false;
-
-  calculatedHeight: number = 0;
-
   section: Section = new Section();
-
-  tags: Array<any> = new Array();
 
   constructor(private _activatedRoute: ActivatedRoute, private _sectionService: SectionService) {
 
@@ -28,17 +26,7 @@ export class SectionManageComponent implements OnInit {
   ngOnInit() {
     this._activatedRoute.params.subscribe((params) => {
       if (params.sectionId) {
-        this._sectionService.get(params.sectionId).subscribe((section) => {
-          this.tags = section.tags.map((tag) => {
-            return {
-              display: tag,
-              value: tag,
-              readonly: false
-            }
-          });
-
-          this.section = section;
-        });
+        this._sectionService.get(params.sectionId).subscribe((section) => this.section = section);
       }
     })
   }
@@ -48,17 +36,21 @@ export class SectionManageComponent implements OnInit {
   }
 
   addNewSection() {
-    this.section.tags = [];
+    this.section.tagsJson = JSON.stringify(this.section.tags);
 
-    this.section.tags = this.tags.map((tag) => {
-      return tag.value;
-    });
-    
     if (this.section.id) {
-      this._sectionService.processExistingSection(this.section).subscribe();
+      this._sectionService.processExistingSection(this.section).subscribe(() => {
+        this.toastManager.showSuccess('Section updated successfully.');
+      }, (error) => {
+        this.toastManager.showError('Failed to update section. Please try again.');
+      });
     }
     else {
-      this._sectionService.processNewSection(this.section).subscribe();
+      this._sectionService.processNewSection(this.section).subscribe(() => {
+        this.toastManager.showSuccess('Section added successfully.');
+      }, (error) => {
+        this.toastManager.showError('Failed to update section. Please try again.');
+      });
     }
   }
 }

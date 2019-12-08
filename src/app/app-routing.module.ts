@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditorComponent } from './components/authorized/editor/editor.component';
 import { GuiWizardComponent } from './components/authorized/gui-wizard/gui-wizard.component';
 import { LoginComponent } from './components/public/login/login.component';
 import { AppAuthorized } from './components/authorized/app.authorized';
@@ -16,15 +15,15 @@ const routes: Routes = [
   { path: '', redirectTo: 'builder', pathMatch: 'full' },
   { path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
       { path: '', pathMatch: 'full', redirectTo: 'editor' },
-      { path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
-      { path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' } },
-      { path: 'sections', component: SectionListComponent, canActivate: [AuthenticatedGuard], data: { title: 'My Saved Sections' } },
-      { path: 'gui-wizard', component: GuiWizardComponent, canActivate: [AuthenticatedGuard], data: { title: 'GUI Wizard' } }
+      { path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 0 } },
+      { path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 1 } },
+      { path: 'sections', component: SectionListComponent, canActivate: [AuthenticatedGuard], data: { title: 'My Saved Sections', animationKey: 2 } },
+      { path: 'gui-wizard', component: GuiWizardComponent, canActivate: [AuthenticatedGuard], data: { title: 'GUI Wizard', animationKey: 3 } }
     ] 
   },
   { path: 'login', component: AppPublic, children: [
-    { path: '', component: LoginComponent, data: { animation: 'Register' } },
-    { path: 'register', component: RegisterComponent, data: { animation: 'Login' } }
+    { path: '', component: LoginComponent },
+    { path: 'register', component: RegisterComponent }
   ]},
   { path: '**', component: PageNotFoundComponent }
 ];
