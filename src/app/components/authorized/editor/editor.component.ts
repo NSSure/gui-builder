@@ -4,6 +4,7 @@ import Section from 'src/app/models/Section';
 import 'brace';
 import 'brace/mode/html';
 import 'brace/theme/github';
+import { EditorService } from 'src/app/services/editor.service';
 
 @Component({
   selector: 'editor',
@@ -15,6 +16,7 @@ export class EditorComponent implements AfterViewInit {
 
   get content(): string {
     this.onContentChanged.emit(this._content);
+    this._editorService.setCurrentSectionHtml(this._content);
     return this._content;
   }
 
@@ -35,12 +37,11 @@ export class EditorComponent implements AfterViewInit {
 
   section: Section = new Section();
 
-  constructor(private _renderer: Renderer) {
+  constructor(private _renderer: Renderer, private _editorService: EditorService) {
 
   }
 
   ngAfterViewInit() {
-    console.log('after editor init');
     setTimeout(() => {
       this.calculateEditorHeight();
     });

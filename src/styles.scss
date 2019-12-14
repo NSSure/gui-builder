@@ -106,13 +106,28 @@ editor {
   border: none;
 
   thead {
-    background-color: #6D7AE0;
+    background-color: #6d7ae0;
     color: white;
   }
 }
 
+.button-large {
+  font-size: 1.15rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 1px solid #ddd;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
 .help-text {
-  font-size: .85rem;
+  font-size: 0.85rem;
   color: #737373;
 }
 
@@ -128,8 +143,25 @@ editor {
 }
 
 .button.button-brand {
-  background-color: #E06EB5 !important;
+  background-color: #e06eb5 !important;
   color: #f7f7f7;
+}
+
+.wells {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .well {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    flex-basis: 20%;
+    margin-right: 15px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+  }
 }
 
 .no-radius {
@@ -153,7 +185,7 @@ editor {
   tr {
     &:hover {
       td {
-        background-color: #EDECFE !important;
+        background-color: #edecfe !important;
         cursor: pointer;
       }
     }

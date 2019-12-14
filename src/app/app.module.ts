@@ -32,6 +32,7 @@ import { SectionManageComponent } from './components/authorized/section/manage/s
 import { DropdownComponent } from './components/authorized/dropdown/dropdown.component';
 import { EditorComponent } from './components/authorized/editor/editor.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SectionTokensComponent } from './components/authorized/section/tokens/section-tokens.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GuiWizardComponent,
     SectionRibbonComponent,
     SectionRendererComponent,
+    SectionTokensComponent,
     SimpleTagsComponent,
     DropdownComponent,
     LoginComponent,

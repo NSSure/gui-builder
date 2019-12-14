@@ -1,7 +1,7 @@
 <div class="login">
     <div class="row justify-center login-card">
         <div class="column-two-fifths">
-            <div class="box is-rounded is-shadowed fill-white">
+            <div class="box is-rounded is-shadowed fill-white mb-large">
                 <div class="card-body">
                     <div class="mb-default">
                         <label class="text-large">Welcome to GUI Builder</label>
@@ -17,8 +17,16 @@
                         <input type="password" class="input-element" [(ngModel)]="userCredentials.password" />
                     </div>
 
-                    <button type="button" class="button button-success min-width-100 mb-small" (click)="login()">Login</button>
-                    <button type="button" class="button min-width-100" [routerLink]="['register']" (click)="signup()">Create New Account</button>
+                    <button type="button" class="button button-success button-large min-width-100 mb-small" (click)="login()">Login</button>
+                </div>
+            </div>
+            <div class="box is-rounded is-shadowed fill-white">
+                <div class="card-body">
+                    <div class="mb-default text-center">
+                        <h1 class="title-3 no-margin"><strong>Don't have an account?</strong></h1>
+                    </div>
+
+                    <button type="button" class="button button-large button-outline min-width-100" [routerLink]="['register']" (click)="signup()">Create New Account</button>
                 </div>
             </div>
         </div>

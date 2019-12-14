@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 // Sample data import.
 import { BaseService } from './base.service';
 import Section from '../models/Section';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import ProcessSectionResponse from '../models/responses/ProcessSectionResponse';
 
 @Injectable()
 export class SectionService extends BaseService {
@@ -27,8 +28,7 @@ export class SectionService extends BaseService {
   }
 
   processNewSection(section: Section) {
-    console.log(this.httpOptions);
-    return this.http.post<boolean>(this.apiUrl + 'add', section, this.httpOptions);
+    return this.http.post<ProcessSectionResponse>(this.apiUrl + 'add', section, this.httpOptions);
   }
 
   processExistingSection(section: Section) {

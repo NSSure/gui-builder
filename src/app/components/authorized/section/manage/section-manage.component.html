@@ -4,33 +4,46 @@
       Section
     </button>
   </div>
-  <div class="box fill-white is-rounded is-shadowed display-flex flex-direction-y flex-full">
-    <div class="mb-large">
-      <div class="row">
-        <div class="column" style="padding-right: 15px">
-          <div class="form-section">
-            <label for="sectionName" class="form-label">Section Name</label>
-            <input type="text" class="input-element" [(ngModel)]="section.name" />
+  <div class="row display-flex flex-direction-y flex-full">
+    <div class="column-four-fifths display-flex flex-direction-y mr-default">
+      <div class="box fill-white is-rounded is-shadowed display-flex flex-direction-y flex-full">
+        <div class="mb-large">
+          <div class="row">
+            <div class="column" style="padding-right: 15px">
+              <div class="form-section">
+                <label for="sectionName" class="form-label">Section Name</label>
+                <input type="text" class="input-element" [(ngModel)]="section.name" />
+              </div>
+            </div>
+            <div class="column">
+              <div class="form-section">
+                <label for="sectionName" class="form-label">Framework</label>
+                <select class="input-element">
+                  <option value="">Bootstrap 3</option>
+                  <option value="">Bootstrap 4</option>
+                  <option value="">Bulma</option>
+                  <option value="">Materialize</option>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="column">
-          <div class="form-section">
-            <label for="sectionName" class="form-label">Framework</label>
-            <select class="input-element">
-              <option value="">Bootstrap 3</option>
-              <option value="">Bootstrap 4</option>
-              <option value="">Bulma</option>
-              <option value="">Materialize</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
-      <div class="box fill-white" style="padding-left: 5px; padding-right: 5px; padding-top: 0; padding-bottom: 0;">
-        <tag-input [(ngModel)]="section.tags" [editable]="true" [modelAsStrings]="true" theme="minimal"></tag-input>
+          <div class="box fill-white" style="padding-left: 5px; padding-right: 5px; padding-top: 0; padding-bottom: 0;">
+            <!-- <tag-input [(ngModel)]="section.tags" [editable]="true" [modelAsStrings]="true" theme="minimal"></tag-input> -->
+          </div>
+        </div>
+
+        <editor [content]="section.html"></editor>
+
+        <div class="output-container is-rounded text-warning display-flex">
+          <div class="output-lines" *ngIf="sectionResponse.tokenIntegrityResponse">
+            <label class="text-white" *ngFor="let errorMsg of sectionResponse.tokenIntegrityResponse.errorMsgs">{{errorMsg}}</label><br>
+          </div>
+        </div>
       </div>
     </div>
-
-    <editor [content]="section.html" (onContentChanged)="onContentChanged($event)"></editor>
+    <div class="column-one-fifths display-flex flex-direction-y flex-full height-100">
+      <section-tokens class="display-flex flex-direction-y flex-full"></section-tokens>
+    </div>
   </div>
 </div>
