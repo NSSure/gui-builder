@@ -1,0 +1,53 @@
+<div class="section-token-manage-component" *ngIf="sectionToken">
+    <div class="form-section">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="input-element" name="name" [(ngModel)]="sectionToken.name" />
+    </div>
+    <div class="form-section">
+        <label for="tokenType" class="form-label">Token Type</label>
+        <select type="text" class="input-element" name="valueRestrictionType" [(ngModel)]="sectionToken.tokenType">
+            <option value="undefined">Please select a token type</option>
+            <option [ngValue]="0">Text</option>
+            <option [ngValue]="1">List</option>
+            <option [ngValue]="2">Url</option>
+            <option [ngValue]="2">Html</option>
+            <option [ngValue]="2">Css</option>
+        </select>
+    </div>
+    <div class="form-section" *ngIf="sectionToken.tokenType === 1">
+        <label for="" class="form-label">Options</label>
+        <input type="text" class="input-element" />
+    </div>
+    <div class="form-section">
+        <label for="valueRestrictionType" class="form-label">Value Restriction Type</label>
+        <select type="text" class="input-element" name="valueRestrictionType" [(ngModel)]="sectionToken.valueRestrictionType">
+            <option value="undefined">Please select a restriction type</option>
+            <option [ngValue]="0">None</option>
+            <option [ngValue]="1">Whitelist</option>
+            <option [ngValue]="2">Blacklist</option>
+        </select>
+    </div>
+    <div *ngIf="sectionToken.valueRestrictionType !== 0">
+        <div class="form-section">
+            <label for="valueRestriction" class="form-label">Values</label>
+        
+            <div class="display-flex flex-direction-x align-items-center">
+                <input type="text" class="input-element flex-full" name="valueRestriction" [(ngModel)]="valueRestriction" />
+                <a class="text-success cursor-pointer" (click)="pushValueRestriction()">
+                    <i class="fa fa-plus fa-lg ml-default"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label class="form-label">Applied Values</label>
+        
+            <div class="display-flex flex-direction-x align-items-center" *ngFor="let value of sectionToken.values; let i = index">
+                <input type="text" class="input-element flex-full" [(ngModel)]="value" />
+                <a class="text-danger cursor-pointer" (click)="sectionToken.values.splice(i, 1)">
+                    <i class="fa fa-close fa-lg ml-default"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,14 @@
 .output-container {
   min-height: 150px;
   background-color: #282828;
-  margin: -15px;
-  margin-top: 30px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
   padding: 15px;
 
   .output-lines {
     display: flex;
     flex-direction: column;
   }
+}
+
+.section-tokens {
+  border-radius: 0;
 }

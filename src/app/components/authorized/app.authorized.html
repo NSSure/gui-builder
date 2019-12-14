@@ -16,7 +16,8 @@
         </dropdown>
       </div>
     </div>
-    <div class="app-content" style="position: relative;" [@routeAnimations]="outlet.isActivated ? outlet.activatedRoute : ''">
+    <!-- [@routeAnimations]="outlet.isActivated ? outlet.activatedRoute : ''" -->
+    <div class="app-content" style="position: relative;">
         <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </div>

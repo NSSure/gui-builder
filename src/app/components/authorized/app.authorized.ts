@@ -8,7 +8,7 @@ import { routeAnimations } from 'src/app/animations/animations';
   templateUrl: './app.authorized.html',
   styleUrls: ['./app.authorized.scss'],
   animations: [
-    routeAnimations
+    // routeAnimations
   ]
 })
 export class AppAuthorized implements OnInit {

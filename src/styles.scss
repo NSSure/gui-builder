@@ -40,7 +40,6 @@ app-root {
 
     .app-content {
       height: 100%;
-      padding: 30px;
       overflow-y: auto;
       background-color: #f7f7f7;
     }
@@ -49,6 +48,15 @@ app-root {
 
 .app-component {
   height: 100%;
+  padding: 30px;
+}
+
+.component-padding {
+  padding: 30px;
+}
+
+.no-radius {
+  border-radius: 0;
 }
 
 .text-header {

@@ -1,7 +1,10 @@
 import TokenType from '../enums/TokenType';
+import ValueRestrictionType from '../enums/ValueRestrictionType';
 
 export default class SectionToken {
-    constructor(public id?: string, public name?: string, public tokenType?: TokenType) {
-
-    }
+    id: string;
+    name: string;
+    tokenType: TokenType;
+    valueRestrictionType: ValueRestrictionType = ValueRestrictionType.None;
+    values?: Array<string>;
 }
