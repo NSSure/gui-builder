@@ -28,19 +28,18 @@
                 </div>
               </div>
             </div>
-
             <div class="box fill-white"
               style="padding-left: 5px; padding-right: 5px; padding-top: 0; padding-bottom: 0;">
-              <tag-input [(ngModel)]="section.tags" [editable]="true" [modelAsStrings]="true" theme="minimal"></tag-input>
+              <tag-input [(ngModel)]="section.tags" [editable]="true" [modelAsStrings]="true" theme="minimal">
+              </tag-input>
             </div>
           </div>
-
           <editor [content]="section.html"></editor>
         </div>
       </div>
     </div>
-    <div class="box fill-white no-radius">
-      <section-token-list class="display-flex flex-direction-y flex-full"></section-token-list>
+    <div class="box fill-white no-radius" style="width: 300px;">
+      <router-outlet></router-outlet>
     </div>
   </div>
   <div class="output-container text-warning display-flex">

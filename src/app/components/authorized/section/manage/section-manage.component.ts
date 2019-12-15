@@ -31,7 +31,8 @@ export class SectionManageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._activatedRoute.params.subscribe((params) => {
+    this._activatedRoute.parent.parent.params.subscribe((params) => {
+      console.log(params);
       if (params.sectionId) {
         this._sectionService.get(params.sectionId).subscribe((section) => this.section = section);
       }

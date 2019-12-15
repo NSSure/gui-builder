@@ -34,6 +34,8 @@ import { EditorComponent } from './components/authorized/editor/editor.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionTokenListComponent } from './components/authorized/section/tokens/list/section-token-list.component';
 import { SectionTokenManageComponent } from './components/authorized/section/tokens/manage/section-token-manage.component';
+import { SectionTokenService } from './services/section-token.service';
+import { SectionTokensDrawerComponent } from './components/authorized/section/tokens/drawer/section-tokens-drawer.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { SectionTokenManageComponent } from './components/authorized/section/tok
     SectionRendererComponent,
     SectionTokenListComponent,
     SectionTokenManageComponent,
+    SectionTokensDrawerComponent,
     SimpleTagsComponent,
     DropdownComponent,
     LoginComponent,

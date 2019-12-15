@@ -10,21 +10,40 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/layout/not-found/page-not-found.component';
 import { SectionListComponent } from './components/authorized/section/list/section-list.component';
 import { SectionManageComponent } from './components/authorized/section/manage/section-manage.component';
+import { SectionTokenListComponent } from './components/authorized/section/tokens/list/section-token-list.component';
+import { SectionTokenManageComponent } from './components/authorized/section/tokens/manage/section-token-manage.component';
+import { SectionTokensDrawerComponent } from './components/authorized/section/tokens/drawer/section-tokens-drawer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'builder', pathMatch: 'full' },
-  { path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
+  {
+    path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
       { path: '', pathMatch: 'full', redirectTo: 'editor' },
-      { path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 0 } },
-      { path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 1 } },
+      {
+        path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 0 }
+      },
+      {
+        path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 1 }, children: [
+          { path: '', pathMatch: 'full', redirectTo: 'tokens' },
+          { path: 'tokens', component: SectionTokensDrawerComponent, children: [
+              { path: '', pathMatch: 'full', redirectTo: 'list' },
+              { path: 'list', component: SectionTokenListComponent },
+              { path: 'manage', component: SectionTokenManageComponent },
+              { path: 'manage/:sectionTokenId', component: SectionTokenManageComponent }
+            ]
+          },
+        ]
+      },
       { path: 'sections', component: SectionListComponent, canActivate: [AuthenticatedGuard], data: { title: 'My Saved Sections', animationKey: 2 } },
       { path: 'gui-wizard', component: GuiWizardComponent, canActivate: [AuthenticatedGuard], data: { title: 'GUI Wizard', animationKey: 3 } }
-    ] 
+    ]
   },
-  { path: 'login', component: AppPublic, children: [
-    { path: '', component: LoginComponent },
-    { path: 'register', component: RegisterComponent }
-  ]},
+  {
+    path: 'login', component: AppPublic, children: [
+      { path: '', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
