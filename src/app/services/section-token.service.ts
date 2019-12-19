@@ -22,6 +22,10 @@ export class SectionTokenService extends BaseService {
     return this.http.post<boolean>(this.apiUrl + 'update', sectionToken, this.httpOptions);
   }
 
+  getSectionToken(sectionTokenId: string) {
+    return this.http.post<SectionToken>(this.apiUrl + 'get', { value: sectionTokenId }, this.httpOptions);
+  }
+
   listTokensBySection(sectionId: string) {
     return this.http.post<Array<SectionToken>>(this.apiUrl + 'list', { value: sectionId }, this.httpOptions);
   }

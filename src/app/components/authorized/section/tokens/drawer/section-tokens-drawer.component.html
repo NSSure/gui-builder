@@ -1,11 +1,13 @@
 <div class="section-tokens-drawer-component">
-    <div class="mb-default">
-        <a class="text-dark" routerLink="list" [routerLinkActive]="['text-link']">
-            <i class="fa fa-list fa-lg"></i>
+    <div class="tabs">
+        <a class="tab" [routerLink]="['./']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Tokens
         </a>
-        <a class="text-dark" routerLink="manage" [routerLinkActive]="['text-link']">
-            <i class="fa fa-plus fa-lg"></i>
+        <a class="tab" [routerLink]="['token']" routerLinkActive="active">
+            New Token
         </a>
     </div>
-    <router-outlet></router-outlet>
+    <div class="p-default">
+        <router-outlet></router-outlet>
+    </div>
 </div>

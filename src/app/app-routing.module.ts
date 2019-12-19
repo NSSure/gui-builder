@@ -24,12 +24,10 @@ const routes: Routes = [
       },
       {
         path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 1 }, children: [
-          { path: '', pathMatch: 'full', redirectTo: 'tokens' },
-          { path: 'tokens', component: SectionTokensDrawerComponent, children: [
-              { path: '', pathMatch: 'full', redirectTo: 'list' },
-              { path: 'list', component: SectionTokenListComponent },
-              { path: 'manage', component: SectionTokenManageComponent },
-              { path: 'manage/:sectionTokenId', component: SectionTokenManageComponent }
+          { path: '', component: SectionTokensDrawerComponent, children: [
+              { path: '', component: SectionTokenListComponent },
+              { path: 'token', component: SectionTokenManageComponent },
+              { path: 'token/:sectionTokenId', component: SectionTokenManageComponent }
             ]
           },
         ]

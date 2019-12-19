@@ -1,0 +1,27 @@
+.section-tokens-drawer-component {
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    padding-top: 15px;
+    background-color: #eee;
+    padding-left: 15px;
+
+    .tab {
+      flex: 1;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      padding: 8px 10px;
+      background-color: #bcc0e0;
+      color: #181818;
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+    }
+
+    .active {
+      background-color: white !important;
+      color: #181818;
+    }
+  }
+}

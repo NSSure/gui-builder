@@ -1,24 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import SectionToken from 'src/app/models/SectionToken';
 import ToastManager from 'src/app/common/toast';
 import { SectionTokenService } from 'src/app/services/section-token.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { trigger, transition, animate, style, query, group } from '@angular/animations';
 
 @Component({
   selector: 'section-token-manage',
   templateUrl: './section-token-manage.component.html',
   styleUrls: ['./section-token-manage.component.scss']
 })
-export class SectionTokenManageComponent {
+export class SectionTokenManageComponent implements OnInit {
   toastManager: ToastManager = new ToastManager({ enableManualDismiss: true });
   sectionToken: SectionToken = new SectionToken();
   valueRestriction: string = '';
+  sectionTokenId: string;
 
   constructor(private _sectionTokenService: SectionTokenService, private _activatedRoute: ActivatedRoute) {
-    this._activatedRoute.parent.parent.params.subscribe((params) => {
-      this.sectionToken.sectionId = params.sectionId;
-    })
+    this._activatedRoute.params.subscribe((params) => {
+      this.sectionTokenId = params.sectionTokenId;
+    });
+  }
+
+  ngOnInit() {
+    if (this.sectionTokenId) {
+      this._sectionTokenService.getSectionToken(this.sectionTokenId).subscribe((sectionToken) => this.sectionToken = sectionToken);
+    }
   }
 
   save() {

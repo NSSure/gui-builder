@@ -6,10 +6,7 @@ import { routeAnimations } from 'src/app/animations/animations';
 @Component({
   selector: 'app-authorized',
   templateUrl: './app.authorized.html',
-  styleUrls: ['./app.authorized.scss'],
-  animations: [
-    // routeAnimations
-  ]
+  styleUrls: ['./app.authorized.scss']
 })
 export class AppAuthorized implements OnInit {
   routerSub: any;

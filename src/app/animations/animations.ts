@@ -17,7 +17,7 @@ export const routeAnimations =
       query(':enter', [
         style({ opacity: '0'})
       ]),
-      query(':leave', animateChild()),
+      query(':leave', animateChild(), { optional: true }),
       query(':enter', [
         animate('500ms ease-out', style({ opacity: '1'}))
       ])
