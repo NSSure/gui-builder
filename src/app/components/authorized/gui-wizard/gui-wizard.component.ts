@@ -9,7 +9,7 @@ import copy from 'src/app/common/copy';
 @Component({
   selector: 'gui-wizard',
   templateUrl: './gui-wizard.component.html',
-  styleUrls: ['./gui-wizard.component.scss']
+  styleUrls: ['./gui-wizard.component.scss', '../../../../global-component-styles.scss']
 })
 export class GuiWizardComponent implements AfterViewInit {
   @ViewChildren('section') sectionElements: QueryList<ElementRef>;

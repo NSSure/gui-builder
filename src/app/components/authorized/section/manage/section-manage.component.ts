@@ -11,10 +11,8 @@ import { delay } from 'q';
 @Component({
   selector: 'section-manage',
   templateUrl: './section-manage.component.html',
-  styleUrls: ['./section-manage.component.scss'],
-  providers: [
-    EditorService
-  ]
+  styleUrls: ['./section-manage.component.scss', '../../../../../global-component-styles.scss'],
+  providers: [EditorService]
 })
 export class SectionManageComponent implements OnInit {
   toastManager: ToastManager = new ToastManager({
@@ -31,7 +29,7 @@ export class SectionManageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._activatedRoute.parent.parent.params.subscribe((params) => {
+    this._activatedRoute.params.subscribe((params) => {
       console.log(params);
       if (params.sectionId) {
         this._sectionService.get(params.sectionId).subscribe((section) => this.section = section);
@@ -44,8 +42,15 @@ export class SectionManageComponent implements OnInit {
     this.section.tagsJson = JSON.stringify(this.section.tags);
 
     if (this.section.id) {
-      this._sectionService.processExistingSection(this.section).subscribe(() => {
-        this.toastManager.showSuccess('Section updated successfully.');
+      this._sectionService.processExistingSection(this.section).subscribe((response: ProcessSectionResponse) => {
+        this.sectionResponse = response;
+
+        if (this.sectionResponse.tokenIntegrityResponse.isMalformed) {
+          this.toastManager.showWarning('Section has malformed tokens.');
+        }
+        else {
+          this.toastManager.showSuccess('Section updated successfully.');
+        }
       }, (error) => {
         this.toastManager.showError('Failed to update section. Please try again.');
       });

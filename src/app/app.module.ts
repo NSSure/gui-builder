@@ -36,6 +36,7 @@ import { SectionTokenListComponent } from './components/authorized/section/token
 import { SectionTokenManageComponent } from './components/authorized/section/tokens/manage/section-token-manage.component';
 import { SectionTokenService } from './services/section-token.service';
 import { SectionTokensDrawerComponent } from './components/authorized/section/tokens/drawer/section-tokens-drawer.component';
+import { SettingsComponent } from './components/authorized/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SectionTokensDrawerComponent } from './components/authorized/section/to
     AppPublic,
     AppComponent,
     SideMenuComponent,
+    SettingsComponent,
     EditorComponent,
     SectionManageComponent,
     SectionListComponent,

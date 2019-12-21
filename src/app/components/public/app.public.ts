@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { routeAnimations } from 'src/app/animations/animations';
-import { RouterOutlet } from '@angular/router';
+import { fadeAnimation } from 'src/app/animations/animations';
 
 @Component({
   selector: 'app-public',
   templateUrl: './app.public.html',
   styleUrls: ['./app.public.scss'],
-  animations: [routeAnimations]
+  animations: [fadeAnimation]
 })
 export class AppPublic {
 

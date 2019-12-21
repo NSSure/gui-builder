@@ -5,7 +5,7 @@ import Section from 'src/app/models/Section';
 @Component({
   selector: 'section-list',
   templateUrl: './section-list.component.html',
-  styleUrls: ['./section-list.component.scss']
+  styleUrls: ['./section-list.component.scss', '../../../../../global-component-styles.scss']
 })
 export class SectionListComponent {
   sections: Array<Section> = [];

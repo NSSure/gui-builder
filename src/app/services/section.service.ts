@@ -32,7 +32,7 @@ export class SectionService extends BaseService {
   }
 
   processExistingSection(section: Section) {
-    return this.http.post<boolean>(this.apiUrl + 'update', section, this.httpOptions);
+    return this.http.post<ProcessSectionResponse>(this.apiUrl + 'update', section, this.httpOptions);
   }
 
   get(sectionId: string) {

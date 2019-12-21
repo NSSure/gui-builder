@@ -1,0 +1,6 @@
+<div class="app-component">
+    <label class="text-medium"><strong>Authentication</strong></label>
+    <div class="box fill-white is-rounded is-shadowed mb-default">
+        Logged in as <strong>{{email}}</strong> {{doesTokenExpire ? 'until ' + (expirationDate | date: 'short') : 'permanently'}}
+    </div>
+</div>

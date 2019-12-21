@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RoutesRecognized, NavigationEnd, ActivatedRoute, ResolveStart, RouterOutlet } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { routeAnimations } from 'src/app/animations/animations';
+import { fadeAnimation } from 'src/app/animations/animations';
 
 @Component({
+  
   selector: 'app-authorized',
   templateUrl: './app.authorized.html',
-  styleUrls: ['./app.authorized.scss']
+  styleUrls: ['./app.authorized.scss'],
+  animations: [fadeAnimation]
 })
 export class AppAuthorized implements OnInit {
   routerSub: any;

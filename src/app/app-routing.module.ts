@@ -13,6 +13,7 @@ import { SectionManageComponent } from './components/authorized/section/manage/s
 import { SectionTokenListComponent } from './components/authorized/section/tokens/list/section-token-list.component';
 import { SectionTokenManageComponent } from './components/authorized/section/tokens/manage/section-token-manage.component';
 import { SectionTokensDrawerComponent } from './components/authorized/section/tokens/drawer/section-tokens-drawer.component';
+import { SettingsComponent } from './components/authorized/settings/settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'builder', pathMatch: 'full' },
@@ -20,7 +21,10 @@ const routes: Routes = [
     path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
       { path: '', pathMatch: 'full', redirectTo: 'editor' },
       {
-        path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 0 }
+        path: 'settings', component: SettingsComponent, canActivate: [AuthenticatedGuard], data: { title: 'Settings' }
+      },
+      {
+        path: 'section', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor' }
       },
       {
         path: 'section/:sectionId', component: SectionManageComponent, canActivate: [AuthenticatedGuard], data: { title: 'Editor', animationKey: 1 }, children: [
