@@ -32,5 +32,5 @@
             </div>
         </div>
     </div>
-    <div class="section-renderer-content" [innerHTML]="section.html"></div>
+    <div class="section-renderer-content" style="padding: 15px;" isolated-section="true" [innerHTML]="section.html" (click)="sectionClicked($event)"></div>
 </div>

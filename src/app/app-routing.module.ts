@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'builder', pathMatch: 'full' },
   {
     path: 'builder', component: AppAuthorized, canActivate: [AuthenticatedGuard], children: [
-      { path: '', pathMatch: 'full', redirectTo: 'editor' },
+      { path: '', pathMatch: 'full', redirectTo: 'gui-wizard' },
       {
         path: 'settings', component: SettingsComponent, canActivate: [AuthenticatedGuard], data: { title: 'Settings' }
       },

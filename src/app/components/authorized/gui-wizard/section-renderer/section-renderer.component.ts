@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output, ViewChild, ViewRef, ViewChildren } from '@angular/core';
 import Section from 'src/app/models/Section';
-import { ThrowStmt } from '@angular/compiler';
+import { GuiWizadService } from 'src/app/services/local/gui-wizard.service';
 
 @Component({
   selector: 'section-renderer',
@@ -25,6 +25,10 @@ export class SectionRendererComponent {
   isHoveringSection: boolean = false;
   displaySectionRibbon: boolean = false;
 
+  constructor(private _guiWizardService: GuiWizadService) {
+
+  }
+
   enableRibbon() {
     this.displaySectionRibbon = true;
     this.onRibbonEnabled.emit(this.section);
@@ -36,5 +40,9 @@ export class SectionRendererComponent {
 
   mouseLeave() {
     this.isHoveringSection = false;
+  }
+
+  sectionClicked(event: MouseEvent) {
+    this._guiWizardService.setSelectedElement(<HTMLElement>event.target);
   }
 }

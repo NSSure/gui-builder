@@ -5,11 +5,13 @@ import ToastManager from 'src/app/common/toast';
 import Section from 'src/app/models/Section';
 import { deepEqual } from 'fast-equals';
 import copy from 'src/app/common/copy';
+import { GuiWizadService } from 'src/app/services/local/gui-wizard.service';
 
 @Component({
   selector: 'gui-wizard',
   templateUrl: './gui-wizard.component.html',
-  styleUrls: ['./gui-wizard.component.scss', '../../../../global-component-styles.scss']
+  styleUrls: ['./gui-wizard.component.scss', '../../../../global-component-styles.scss'],
+  providers: [GuiWizadService]
 })
 export class GuiWizardComponent implements AfterViewInit {
   @ViewChildren('section') sectionElements: QueryList<ElementRef>;
@@ -29,7 +31,10 @@ export class GuiWizardComponent implements AfterViewInit {
 
   sections: Array<any> = [];
 
-  constructor(private _sectionService: SectionService, private _resolver: ComponentFactoryResolver) {
+  constructor(
+    private _sectionService: SectionService,
+    private _guiWizardService: GuiWizadService,
+    private _resolver: ComponentFactoryResolver) {
     this._sectionService.listSections().subscribe((sections) => {
       this.sections = sections;
     });
@@ -47,16 +52,12 @@ export class GuiWizardComponent implements AfterViewInit {
     this.dropArea.nativeElement.ondrop = (event) => this.onDrop(event);
   }
 
-  toggleEditHtml() {
-    this.isEditHtml = !this.isEditHtml;
+  copyDesignHtml() {
+    this.designHtml = '';
 
-    if (this.isEditHtml) {
-      this.designHtml = '';
-
-      this.sectionRenderers.forEach((sectionRenderer) => {
-        this.designHtml += sectionRenderer.instance.section.html;
-      });
-    }
+    this.sectionRenderers.forEach((sectionRenderer) => {
+      this.designHtml += sectionRenderer.instance.section.html;
+    });
 
     copy(this.designHtml, 'Design HTML copied to clipboard');
   }
@@ -96,6 +97,8 @@ export class GuiWizardComponent implements AfterViewInit {
       componentRef.instance.section = section;
 
       componentRef.instance.onRibbonEnabled.subscribe((section: Section) => {
+        this._guiWizardService.setEnabledSection(componentRef.instance.section.id);
+
         this.sectionRenderers.forEach((sectionRenderer) => {
           if (componentRef.hostView !== sectionRenderer.hostView) {
             sectionRenderer.instance.displaySectionRibbon = false;

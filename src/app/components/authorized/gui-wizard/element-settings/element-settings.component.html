@@ -1,0 +1,25 @@
+<div class="token-settings-component m-default" *ngIf="element">
+  <div class="form-section">
+    <label for="sectionName" class="form-label">Standard HTML Elements</label>
+    <select class="input-element">
+      <option *ngFor="let standardElement of htmlDefinitions.standardElements">{{standardElement.name}}</option>
+    </select>
+  </div>
+  <label class="text-medium"><u><strong>Element Configuration</strong></u> (<a (click)="loadParent()"
+      class="text-link cursor-pointer">Parent</a>)</label>
+  <label class="text-medium">{{element.tagName}}</label>
+  <code class="code-snippet no-padding mb-default">
+      {{cssPath}}
+    </code>
+  <label class="text-medium">Attributes {{attributes.length}} value(s)</label>
+  <div class="form-section" *ngFor="let attribute of attributes; let i = index;">
+    <label for="name" class="form-label">{{attribute.name}}</label>
+    <input type="text" class="input-element" name="name_{{i}}" [(ngModel)]="attribute.value" />
+  </div>
+  <!-- <div *ngIf="standardElement">
+    <div class="form-section" *ngFor="let standardAttribute of standardElement.standardAttributes">
+      <label for="sectionName" class="form-label">{{htmlDefinitions.standardAttributeMap[standardAttribute]}}</label>
+      <input type="text" class="input-element" />
+    </div>
+  </div> -->
+</div>

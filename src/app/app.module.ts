@@ -37,6 +37,7 @@ import { SectionTokenManageComponent } from './components/authorized/section/tok
 import { SectionTokenService } from './services/section-token.service';
 import { SectionTokensDrawerComponent } from './components/authorized/section/tokens/drawer/section-tokens-drawer.component';
 import { SettingsComponent } from './components/authorized/settings/settings.component';
+import { ElementSettingsComponent } from './components/authorized/gui-wizard/element-settings/element-settings.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SettingsComponent } from './components/authorized/settings/settings.com
     GuiWizardComponent,
     SectionRibbonComponent,
     SectionRendererComponent,
+    ElementSettingsComponent,
     SectionTokenListComponent,
     SectionTokenManageComponent,
     SectionTokensDrawerComponent,
